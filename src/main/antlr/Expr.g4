@@ -1,6 +1,6 @@
 grammar Expr;
 
-program : /* TO BE COMPLETED */
+program : number
         ;
 
 WHITESPACE: (' ' | '\t' )+ -> skip;
