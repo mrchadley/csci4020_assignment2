@@ -3,7 +3,9 @@ grammar Expr;
 program: line*;
 
 line:	STRING? expr COMMENT?
-	|	COMMENT;
+	|	COMMENT
+	|	'\r'? '\n'
+	;
 
 prec:	':' NUMBER;
 
