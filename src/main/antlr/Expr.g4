@@ -1,9 +1,10 @@
 grammar Expr;
 
-program: line*;
+program: NEWLINE* line (NEWLINE* line)* NEWLINE?;
 
 line:	STRING? expr COMMENT?
-	|	COMMENT;
+	|	COMMENT
+	;
 
 prec:	':' NUMBER;
 
@@ -25,7 +26,7 @@ factor
 ID : [a-z]+;
 FUNCTION : ID '(' NUMBER ')';
 
-COMMENT : '#' ~('\n')* '\n';
+COMMENT : '#' ~('\r' | '\n')*;// '\n';
 
 STRING : '"' ~('"')* '"';
 
@@ -34,5 +35,7 @@ NUMBER
 	|	'-'? INT
 	;
 fragment INT : '0' | [1-9] [0-9]* ;
+
+NEWLINE : '\r'? '\n';
 
 WS	:	[ \t\n\r]+ -> skip;
